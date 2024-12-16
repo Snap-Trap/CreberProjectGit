@@ -39,28 +39,28 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = Vector3.zero;
 
-        if (moveLeft.IsPressed())
+        if (moveLeft.ReadValue<float>() == 1)
         {
             movement += -rightMovement * speed;
         }
 
-        if (moveRight.IsPressed())
+        if (moveRight.ReadValue<float>() == 1)
         {
             movement += rightMovement * speed;
         }
 
-        if (moveForward.IsPressed())
+        if (moveForward.ReadValue<float>() == 1)
         {
 
             movement += forwardMovement * speed;
         }
 
-        if (moveBackwards.IsPressed())
+        if (moveBackwards.ReadValue<float>() == 1)
         {
             movement += -forwardMovement * speed;
         }
 
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);   
     }
 
     private void OnEnable()

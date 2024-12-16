@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
-public class PlayerStartup : MonoBehaviour
+public class PlayerStartup : SimulationBehaviour, IPlayerJoined
 {
-    public PlayerMovement playerMovement;
-    public PlayerCamera playerCamera;
+    public GameObject playerPrefab;
 
-    private void Start()
+    public void PlayerJoined(PlayerRef player)
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        playerCamera = GetComponent<PlayerCamera>();
-
-        playerMovement.SetActive(false);
+        if (player == Runner.LocalPlayer)
+        {
+            Runner.Spawn(playerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
+        }
     }
 }
